@@ -1,4 +1,4 @@
-2024-05-02
+
 ```c
 #include<stdio.h>
 void findMinMax(int arr[],int size)
