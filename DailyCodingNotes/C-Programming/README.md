@@ -9,4 +9,5 @@
 2) To print all negative numbers in an array.
 ### Day 3:
 04-05-2024
-1) 
+1) Remove Duplicates in an Array.
+2) Count number of occurrences in an sorted array
