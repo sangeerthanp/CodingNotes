@@ -7,3 +7,6 @@
 03-05-2024:
 1) Sum of an array.
 2) To print all negative numbers in an array.
+### Day 3:
+04-05-2024
+1) 
