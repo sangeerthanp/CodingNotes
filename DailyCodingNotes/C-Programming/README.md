@@ -11,3 +11,8 @@
 04-05-2024
 1) Remove Duplicates in an Array.
 2) Count number of occurrences in an sorted array
+### Day 4:
+05-05-2024
+1) Prime Number Or Not a Prime Number.
+2) Neon Number.
+3) Number series.
