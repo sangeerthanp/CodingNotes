@@ -12,6 +12,13 @@ int main(){
 }
 ```
 
+Input: 5
+Output: 1 3 6 10 15
+
+
+Input: 10
+Output: 1 3 6 10 15 21 28 36 45 55
+
 
 ![[Screenshot 2024-05-05 104725.png]]
 

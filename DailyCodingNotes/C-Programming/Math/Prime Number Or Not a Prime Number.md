@@ -24,6 +24,13 @@ int main(){
 }
 ```
 
+
+Input: 5
+Output: Prime Number
+
+Input: 10
+Output: Not a prime number.
+
 ![[Screenshot 2024-05-05 102412.png]]
 
 ![[Screenshot 2024-05-05 102444.png]]
