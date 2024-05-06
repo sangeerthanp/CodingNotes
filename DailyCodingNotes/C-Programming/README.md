@@ -16,3 +16,7 @@
 1) Prime Number Or Not a Prime Number.
 2) Neon Number.
 3) Number series.
+### Day 5:
+06-05-2024
+1) Second largest element in an array.
+2) Count even and odd elements in array.
