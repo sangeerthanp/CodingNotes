@@ -20,3 +20,4 @@
 06-05-2024
 1) Second largest element in an array.
 2) Count even and odd elements in array.
+3) Hollow Sphere.
