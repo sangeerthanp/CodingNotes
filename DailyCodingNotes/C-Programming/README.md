@@ -26,3 +26,9 @@
 1) Armstrong number.
 2) LCM and GCD.
 3) Fibonacci Series.
+### Day 7:
+1) Rotate array by one towards left.
+2) Rotate array by one towards right.
+3) Rotate array by k times towards left.
+4) Rotate array by k times towards right.
+5) Addition and Multiplication of two array of same length.

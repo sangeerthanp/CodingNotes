@@ -26,3 +26,32 @@ int main() {
 }
 
 ```
+
+```c
+#include<stdio.h>
+
+int findOccurrence(int arr[], int length, int number) {
+    int count = 0;
+    for(int i = 0; i < length; i++) {
+        if(arr[i] == number) {
+            count++;
+        }
+    }
+    return count;
+}
+
+int main() {
+    int n;
+    scanf("%d", &n);
+    int arr[n];
+    for(int i = 0; i < n; i++) {
+        scanf("%d", &arr[i]);
+    }
+    int occurrence;
+    scanf("%d", &occurrence);
+    int count = findOccurrence(arr, n, occurrence);
+    printf("%d ", count);
+    return 0;
+}
+
+```

@@ -1,6 +1,6 @@
 ```c
 #include<stdio.h>
-void secondLargest(int arr[],int n){
+void evenAndOddCount(int arr[],int n){
     int evencount = 0;
     int oddcount = 0;
     for(int i=0;i<n;i++){
@@ -21,6 +21,6 @@ int main(){
     for(int i=0;i<n;i++){
         scanf("%d",&arr[i]);
     }
-    secondLargest(arr,n);
+    evenAndOddCount(arr,n);
 }
 ```
