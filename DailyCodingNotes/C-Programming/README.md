@@ -35,4 +35,8 @@
 ### Day 8:
 1) Insert a number in an array.
 2) Delete a number in an array.
-3) 
+3) Count of array elements divisible by specific number.
+4) Removing first occurrence of a given number from an array.
+5) Second largest element in the array.
+6) Print unique elements in an array.
+7) Print duplicate elements in an array.
