@@ -32,3 +32,7 @@
 3) Rotate array by k times towards left.
 4) Rotate array by k times towards right.
 5) Addition and Multiplication of two array of same length.
+### Day 8:
+1) Insert a number in an array.
+2) Delete a number in an array.
+3) 
