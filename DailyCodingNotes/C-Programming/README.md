@@ -40,3 +40,6 @@
 5) Second largest element in the array.
 6) Print unique elements in an array.
 7) Print duplicate elements in an array.
+### Day 9:
+1) String length.
+2) String compare.

@@ -9,7 +9,7 @@ void secondHighest(int arr[],int n){
     }
     else{
         max1 = arr[1];
-        max2 = arr[2];
+        max2 = arr[0];
     }
     for(int i=2;i<n;i++){
         if(arr[i] > max1){

@@ -19,7 +19,7 @@ void uniqueElement (int arr[], int n)
 		  printf ("%d ", arr[i]);
 		}
 	}
-}
+	}
 
 int
 main ()
