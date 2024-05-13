@@ -27,12 +27,14 @@
 2) LCM and GCD.
 3) Fibonacci Series.
 ### Day 7:
+08-05-2024
 1) Rotate array by one towards left.
 2) Rotate array by one towards right.
 3) Rotate array by k times towards left.
 4) Rotate array by k times towards right.
 5) Addition and Multiplication of two array of same length.
 ### Day 8:
+09-05-2024
 1) Insert a number in an array.
 2) Delete a number in an array.
 3) Count of array elements divisible by specific number.
@@ -41,5 +43,9 @@
 6) Print unique elements in an array.
 7) Print duplicate elements in an array.
 ### Day 9:
+12-05-2024
 1) String length.
 2) String compare.
+### Day 10:
+13-05-2024
+1) Count number of vowels, consonants, digits and spaces.
