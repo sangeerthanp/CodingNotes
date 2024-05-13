@@ -49,3 +49,4 @@
 ### Day 10:
 13-05-2024
 1) Count number of vowels, consonants, digits and spaces.
+2) Print string without vowels
