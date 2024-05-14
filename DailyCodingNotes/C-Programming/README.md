@@ -49,4 +49,11 @@
 ### Day 10:
 13-05-2024
 1) Count number of vowels, consonants, digits and spaces.
-2) Print string without vowels
+2) Print string without vowels.
+### Day 11
+14-05-2024
+1) Existence of a Substring in a String and Its Reverse.
+2) Percentage of Letter in String.
+
+
+
