@@ -54,6 +54,13 @@
 14-05-2024
 1) Existence of a Substring in a String and Its Reverse.
 2) Percentage of Letter in String.
+### Day 12
+15-05-2024
+1) Remove the Vowel from the String and print it.
+2) Replace specific char with another char and numbers with 'n'.
+3) Print the given string without any alphabet character.
+4) Print the string replacing the space with given character.
+5) Program to print the first non repeating character in a string.
 
 
 
