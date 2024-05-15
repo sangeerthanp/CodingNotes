@@ -61,6 +61,10 @@
 3) Print the given string without any alphabet character.
 4) Print the string replacing the space with given character.
 5) Program to print the first non repeating character in a string.
+6) Find the largest and smallest word in a string.
+7) Get num of words from user and get the num of words and print even positions words.
+8) Find the first capital letter. 
+9) Find the largest number length in the given sentence.
 
 
 
