@@ -1,4 +1,5 @@
-```c\#include<stdio.h>
+```c
+#include<stdio.h>
 #include<string.h>
 int main(){
     char arr[100];
