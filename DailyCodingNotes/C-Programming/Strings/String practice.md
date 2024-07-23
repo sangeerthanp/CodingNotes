@@ -480,3 +480,87 @@ int main(){
 
 
 ```
+
+***Reverse the string given in a array of strings***\
+```c
+#include<stdio.h>
+#include<string.h>
+int main(){
+    int n;
+    scanf("%d",&n);
+    char arr[n][100];
+    for(int i=0;i<n;i++){
+        scanf("%s",arr[i]);
+    }
+    for(int i=0;i<n;i++){
+        if(i%2!=0){
+            int len = strlen(arr[i]);
+            for(int j=len-1;j>=0;j--){
+                printf("%c",arr[i][j]);
+            }
+            printf("\n");
+        }
+    }
+}
+
+```
+
+***Count the occurrence of the letters and sum it***
+```c
+#include<stdio.h>
+#include<string.h>
+int main(){
+    char arr[100];
+    scanf("%[^\n]s",arr);
+    arr[strcspn(arr,"\n")] = '\0';
+    printf("%s\n",arr);
+    int hash[256] = {0};
+    int printed[256] = {0};
+    
+    for(int i=0;i<strlen(arr);i++){
+        hash[arr[i]]++;
+    }
+    int sum = 0;
+    for(int i=0;i<strlen(arr);i++){
+        if(!printed[arr[i]]){
+            printf("%d",hash[arr[i]]);
+            sum += hash[arr[i]];
+            printed[arr[i]] = 1;
+        }
+    }
+    printf("\n%d",sum);
+}
+```
+
+***Remove Duplicated words***
+```c
+#include<stdio.h>
+#include<string.h>
+int main(){
+    char arr[100];
+    scanf("%[^\n]s",arr);
+    arr[strcspn(arr,"\n")] = '\0';
+    char * newarr[100];
+    int index = 0;
+    char * token = strtok(arr," ");
+    
+    while(token != NULL){
+        newarr[index++] = token;
+        token = strtok(NULL," ");
+    }
+    int flag;
+    for(int i=0;i<index;i++){
+        flag = 0;
+        for(int j=i+1;j<index;j++){
+            if(strcmp(newarr[i],newarr[j])==0){
+                flag = 1;
+                break;
+            }
+        }
+        if(!flag){
+            printf("%s ",newarr[i]);
+        }
+    }
+}
+```
+

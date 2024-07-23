@@ -69,5 +69,8 @@
 16-05-2024
 1) Railway time system.
 
+23-07-2024
+1) Reverse the string given in a array of strings.
+
 
 
