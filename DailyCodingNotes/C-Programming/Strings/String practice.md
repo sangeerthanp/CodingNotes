@@ -564,3 +564,52 @@ int main(){
 }
 ```
 
+***Reverse the words in a string***
+```c
+#include<stdio.h>
+#include<string.h>
+#include<ctype.h>
+int main(){
+    char arr[100];
+    scanf("%[^\n]s",arr);
+    arr[strcspn(arr,"\n")] = '\0';
+    char * newarr[100];
+    int index = 0;
+    char * token = strtok(arr," ");
+    
+    while(token != NULL){
+        newarr[index++] = token; 
+        token = strtok(NULL," ");
+    }
+    for(int i=index-1;i>=0;i--){
+        printf("%s",newarr[i]);
+    }
+}
+```
+
+***Remove the corresponding word***
+```c
+#include<stdio.h>
+#include<string.h>
+#include<ctype.h>
+int main(){
+    char arr[100];
+    scanf("%[^\n]s",arr);
+    arr[strcspn(arr,"\n")] = '\0';
+    
+    char word[100];
+    scanf(" %[^\n]s",word);
+    word[strcspn(word,"\n")] = '\0';
+    int flag;
+    char * token = strtok(arr," ");
+    while(token != NULL){
+            flag = 0; 
+        if(strcmp(token,word)==0 && !flag){
+            flag = 1;
+        }
+        if(!flag) printf("%s ",token);
+        token = strtok(NULL," ");
+    }
+}
+```
+
