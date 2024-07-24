@@ -311,14 +311,14 @@ int main(){
     if((!(hours >= 0 && hours <=23)) || (!(mins >= 0 && mins <= 59)) || (!(sec>=0 && sec<=59) )){
         printf("Invalid");
     }
-    else{c
+    else{
         printf("Hours:%d\n",hours);
         printf("Minutes:%d\n",mins);
         printf("Seconds:%d",sec);
     }
 }
 ```
-***Transpose the matrix***
+***Transpose the matrix and clockwise***
 ```c
 #include<stdio.h>
 #include<string.h>
