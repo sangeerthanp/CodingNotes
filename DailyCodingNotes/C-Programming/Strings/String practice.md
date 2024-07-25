@@ -551,7 +551,7 @@ int main(){
     int flag;
     for(int i=0;i<index;i++){
         flag = 0;
-        for(int j=i+1;j<index;j++){
+        for(int j=0;j<i;j++){
             if(strcmp(newarr[i],newarr[j])==0){
                 flag = 1;
                 break;
