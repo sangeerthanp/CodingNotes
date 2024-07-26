@@ -1,4 +1,5 @@
-***Input a string and count the character frequencies and print its pdt***
+ ***Input a string and count the character frequencies and print its pdt***
+
 
 ```c
 #include<stdio.h>
