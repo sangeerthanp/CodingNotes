@@ -56,3 +56,32 @@ int countMatches(char*** items, int itemsSize, int* itemsColSize, char* ruleKey,
     return count;
 }
 ```
+
+[2678. Number of Senior Citizens](https://leetcode.com/problems/number-of-senior-citizens/)
+
+```c
+int countSeniors(char ** details, int detailsSize){
+    int count = 0;
+    for(int i=0;i<detailsSize;i++){
+        if(details[i][11] == '6' && details[i][12] == '0') continue;
+        else if(details[i][11] >= '6'){
+            count++;
+        }
+    }
+    return count;
+}
+```
+
+[1528. Shuffle String](https://leetcode.com/problems/shuffle-string/)
+
+```c
+char* restoreString(char* s, int* indices, int indicesSize) {
+    char * result = (char *) malloc (1000 * sizeof(char));
+    for(int i=0;i<indicesSize;i++){
+        result[indices[i]] = s[i];
+    }
+    result[indicesSize] = '\0';
+    return result;
+}
+```
+
