@@ -1,3 +1,10 @@
+
+
+| Input               | Output    |
+| ------------------- | --------- |
+| He speaks malayalam | He speaks |
+
+
 ```c
 #include<stdio.h>
 #include<ctype.h>
