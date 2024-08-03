@@ -100,3 +100,21 @@ int maximumWealth(int** accounts, int accountsSize, int* accountsColSize) {
 }
 ```
 
+[1460. Make Two Arrays Equal by Reversing Subarrays](https://leetcode.com/problems/make-two-arrays-equal-by-reversing-subarrays/)
+
+```c
+bool canBeEqual(int* target, int targetSize, int* arr, int arrSize) {
+    int hash1[1001] = {0};
+    int hash2[1001] = {0};
+    int len = targetSize;
+    for (int i = 0; i < len; i++) {
+        hash1[target[i]]++;
+        hash2[arr[i]]++;
+    }
+    for (int i = 0; i <=1000; i++) {
+        if (hash1[i] != hash2[i])
+            return false;
+    }
+    return true;
+}
+```
