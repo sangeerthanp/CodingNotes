@@ -118,3 +118,46 @@ bool canBeEqual(int* target, int targetSize, int* arr, int arrSize) {
     return true;
 }
 ```
+
+[1508. Range Sum of Sorted Subarray Sums](https://leetcode.com/problems/range-sum-of-sorted-subarray-sums/)
+
+```c
+int cmp(const void * a,const void * b){
+    return *(int *)a - *(int *)b;
+}
+int rangeSum(int* nums, int numsSize, int n, int left, int right) {
+    int newlen = n *  (n+1) / 2;
+    int newarr[newlen],index = 0;
+    int ans = 0,mod=1e9+7;
+    for(int i=0;i<numsSize;i++){
+         int sum = 0;
+        for(int j=i;j<numsSize;j++){
+            sum += nums[j];
+            newarr[index++] = sum;
+        }
+    }
+    qsort(newarr,index,sizeof(int),cmp);
+    for(int i=left-1;i<right;i++){
+        ans = (ans+newarr[i]) % mod;
+    }
+    return ans;
+}
+```
+
+[2037. Minimum Number of Moves to Seat Everyone](https://leetcode.com/problems/minimum-number-of-moves-to-seat-everyone/)
+
+```c
+int cmp(const void * a,const void * b){
+    return *(int *)a - *(int *)b;
+}
+
+int minMovesToSeat(int* seats, int seatsSize, int* students, int studentsSize) {
+    qsort(seats,seatsSize,sizeof(int),cmp);
+    qsort(students,studentsSize,sizeof(int),cmp);
+    int count = 0;
+    for(int i=0;i<seatsSize;i++){
+        count += abs(seats[i] - students[i]);
+    }
+    return count;
+}
+```
