@@ -85,3 +85,76 @@ char* restoreString(char* s, int* indices, int indicesSize) {
 }
 ```
 
+[2053. Kth Distinct String in an Array](https://leetcode.com/problems/kth-distinct-string-in-an-array/)
+
+```c
+char* kthDistinct(char** arr, int arrSize, int k) {
+    int hash[1000] = {0};
+    for (int i = 0; i < arrSize; i++) {
+        if (hash[i] == 0) {
+            for (int j = i + 1; j < arrSize; j++) {
+                if (strcmp(arr[i], arr[j]) == 0) {
+                    hash[i] = 1;
+                    hash[j] = 1;
+                }
+            }
+        }
+    }
+    int count = 0;
+    for(int i=0;i<arrSize;i++){
+        if(hash[i] == 0){
+            count++;
+            if(count == k) return arr[i];
+        }
+    }
+    return "";
+}
+```
+
+[1768. Merge Strings Alternately](https://leetcode.com/problems/merge-strings-alternately/)
+
+```c
+char * mergeAlternately(char * word1, char * word2){
+
+    char * res = (char *) malloc (strlen(word1)+strlen(word2)+1 * sizeof(char));
+    int index = 0,i=0,j=0;
+    while(i<strlen(word1) || j<strlen(word2)){
+        if(i<strlen(word1)){
+            res[index++] = word1[i];
+        }
+        if(j<strlen(word2)){
+            res[index++] = word2[j];
+        }
+        i++;
+        j++;
+    }
+    res[index] = '\0';
+    return res;
+}
+```
+
+[2053. Kth Distinct String in an Array](https://leetcode.com/problems/kth-distinct-string-in-an-array/)
+
+```c
+char* kthDistinct(char** arr, int arrSize, int k) {
+    int hash[1000] = {0};
+    for (int i = 0; i < arrSize; i++) {
+        if (hash[i] == 0) {
+            for (int j = i + 1; j < arrSize; j++) {
+                if (strcmp(arr[i], arr[j]) == 0) {
+                    hash[i] = 1;
+                    hash[j] = 1;
+                }
+            }
+        }
+    }
+    int count = 0;
+    for(int i=0;i<arrSize;i++){
+        if(hash[i] == 0){
+            count++;
+            if(count == k) return arr[i];
+        }
+    }
+    return "";
+}
+```

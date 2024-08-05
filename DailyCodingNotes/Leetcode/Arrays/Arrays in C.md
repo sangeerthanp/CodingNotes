@@ -32,28 +32,6 @@ int numIdenticalPairs(int* nums, int numsSize) {
 }
 ```
 
-[1768. Merge Strings Alternately](https://leetcode.com/problems/merge-strings-alternately/)
-
-```c
-char * mergeAlternately(char * word1, char * word2){
-
-    char * res = (char *) malloc (strlen(word1)+strlen(word2)+1 * sizeof(char));
-    int index = 0,i=0,j=0;
-    while(i<strlen(word1) || j<strlen(word2)){
-        if(i<strlen(word1)){
-            res[index++] = word1[i];
-        }
-        if(j<strlen(word2)){
-            res[index++] = word2[j];
-        }
-        i++;
-        j++;
-    }
-    res[index] = '\0';
-    return res;
-}
-```
-
 [2134. Minimum Swaps to Group All 1's Together II](https://leetcode.com/problems/minimum-swaps-to-group-all-1s-together-ii/)
 
 ```c
@@ -161,3 +139,26 @@ int minMovesToSeat(int* seats, int seatsSize, int* students, int studentsSize) {
     return count;
 }
 ```
+
+[2535. Difference Between Element Sum and Digit Sum of an Array](https://leetcode.com/problems/difference-between-element-sum-and-digit-sum-of-an-array/)
+
+```c
+int differenceOfSum(int* nums, int numsSize) {
+    int eleSum = 0;
+    for(int i=0;i<numsSize;i++){
+        eleSum += nums[i];
+    }
+    int digitSum = 0;
+    for(int i=0;i<numsSize;i++){
+        while(nums[i] != 0){
+            int rem = nums[i] % 10;
+            digitSum += rem;
+            nums[i] /= 10;
+        }
+    }
+    int ans = abs(eleSum - digitSum);
+    return ans;
+}
+```
+
+
