@@ -158,3 +158,70 @@ char* kthDistinct(char** arr, int arrSize, int k) {
     return "";
 }
 ```
+
+[3016. Minimum Number of Pushes to Type Word II](https://leetcode.com/problems/minimum-number-of-pushes-to-type-word-ii/)
+
+>[!tip]
+>https://www.youtube.com/watch?v=xhi_c7JdDkM
+
+```c
+int cmp(const void* a, const void* b) { return (*(int*)b) - (*(int*)a); }
+
+int minimumPushes(char* word) {
+    int hash[26] = {0};
+    for (int i = 0; word[i]; i++) {
+        hash[word[i] - 'a']++;
+    }
+    qsort(hash, 26, sizeof(int), cmp);
+    int ans = 0, press = 1, key = 2;
+    for (int i = 0; i < 26 && hash[i]; i++) {
+        ans += press * hash[i];
+        key++;
+        if (key == 10) {
+            key = 2;
+            press++;
+        }
+    }
+    return ans;
+}
+```
+
+[2273. Find Resultant Array After Removing Anagrams](https://leetcode.com/problems/find-resultant-array-after-removing-anagrams/)
+
+```c
+char** removeAnagrams(char** words, int wordsSize, int* returnSize) {
+    char ** newarr = (char **) malloc (1000 * sizeof(char));
+    int index = 0,freq[wordsSize];
+    for(int i=0;i<wordsSize;i++){
+        freq[i] = 0;
+    }
+
+    for(int i=0;i<wordsSize;i++){
+        if(freq[i] == 0){
+            newarr[index++] = strdup(words[i]);
+            int flag = 1;
+            for(int j=i+1;j<wordsSize;j++){
+                if(strlen(words[i]) != strlen(words[j])) continue;
+                else{
+                    int hash1[256] = {0},hash2[256] = {0};
+                    for(int k=0;k<strlen(words[i]);k++){
+                        hash1[words[i][k]]++;
+                        hash2[words[j][k]]++;
+                    }
+                    for(int k=0;k<256;k++){
+                        if(hash1[k] != hash2[k]){
+                            flag = 0;
+                            break;
+                        }
+                    }
+                }
+                if(flag){
+                    freq[j] = 1;
+                }
+            }
+        }
+    }
+    *returnSize = index;
+    return newarr;
+}
+```
