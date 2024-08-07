@@ -161,4 +161,122 @@ int differenceOfSum(int* nums, int numsSize) {
 }
 ```
 
+[2367. Number of Arithmetic Triplets](https://leetcode.com/problems/number-of-arithmetic-triplets/)
 
+```c
+int arithmeticTriplets(int* arr, int n, int diff) {
+    int count = 0;
+    for(int i=0;i<n;i++){
+        for(int j=i+1;j<n;j++){
+            if(arr[j] - arr[i] == diff){
+                for(int k=j+1;k<n;k++){
+                    if(arr[k] - arr[j] == diff) count++;
+                }
+            }
+        }
+    }
+    return count;
+}
+```
+
+[2006. Count Number of Pairs With Absolute Difference K](https://leetcode.com/problems/count-number-of-pairs-with-absolute-difference-k/)
+
+```c
+int countKDifference(int* nums, int numsSize, int k) {
+    int count = 0;
+    for(int i=0;i<numsSize;i++){
+        for(int j=i+1;j<numsSize;j++){
+            if(abs(nums[i] - nums[j]) == k) count++;
+        }
+    }
+    return count;
+}
+```
+
+[2108. Find First Palindromic String in the Array](https://leetcode.com/problems/find-first-palindromic-string-in-the-array/)
+
+```c
+char* firstPalindrome(char** words, int wordsSize) {
+    for(int i=0;i<wordsSize;i++){
+        int flag = 1;
+        int len = strlen(words[i]),index=0;
+        char rev[len+1];
+        for(int j=len-1;j>=0;j--){
+            rev[index++] = words[i][j];
+        }
+        rev[index] = '\0';
+        for(int k=0;k<len;k++){
+            if(words[i][k] != rev[k]){
+                flag = 0;
+                break;
+            }
+        }
+        if(flag) return words[i];
+    }
+    return "";
+}
+```
+
+[2956. Find Common Elements Between Two Arrays](https://leetcode.com/problems/find-common-elements-between-two-arrays/)
+
+```c
+int* findIntersectionValues(int* nums1, int nums1Size, int* nums2, int nums2Size, int* returnSize) {
+
+    int * res = (int *) malloc (2 * sizeof(int));
+    int index = 0;
+    int hash1[256] = {0},hash2[256] = {0};
+    for(int i=0;i<nums1Size;i++){
+        hash1[nums1[i]]++;
+    }
+
+    for(int i=0;i<nums2Size;i++){
+        hash2[nums2[i]]++;
+    }
+
+    int count1=0,count2=0;
+  
+    for(int i=0;i<nums1Size;i++){
+        if(hash2[nums1[i]] > 0) count1++;
+    }
+
+    for(int i=0;i<nums2Size;i++){
+        if(hash1[nums2[i]] > 0) count2++;
+    }
+
+    res[0] = count1;
+    res[1] = count2;
+
+    *returnSize = 2;
+    return res;
+}
+```
+
+[1684. Count the Number of Consistent Strings](https://leetcode.com/problems/count-the-number-of-consistent-strings/)
+
+```c
+int countConsistentStrings(char * allowed, char ** words, int wordsSize){
+
+    int hash[256] = {0},count=0;
+    for(int i=0;i<strlen(allowed);i++){
+        hash[allowed[i]]++;
+    }
+
+    for(int i=0;i<wordsSize;i++){
+        int freq[256] = {0};
+        for(int j=0;j<strlen(words[i]);j++){
+            freq[words[i][j]]++;
+        }
+
+        int flag = 1;
+
+        for(int k=0;k<256;k++){
+            if(hash[k]==0 && freq[k] > 0){
+                flag = 0;
+                break;
+            }
+        }
+        if(flag ) count++;
+    }
+    return count;
+}
+```
