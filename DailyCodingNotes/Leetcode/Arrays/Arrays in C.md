@@ -280,3 +280,26 @@ int countConsistentStrings(char * allowed, char ** words, int wordsSize){
     return count;
 }
 ```
+
+[2974. Minimum Number Game](https://leetcode.com/problems/minimum-number-game/)
+
+```c
+int cmp(const void *a,const void *b){
+    return *(int *)a - *(int *)b; 
+}
+
+int* numberGame(int* nums, int numsSize, int* returnSize) {
+    int * res = (int *) malloc (numsSize * sizeof(int));
+    int index = 0;
+    qsort(nums,numsSize,sizeof(int),cmp);
+    for(int i=0;i<numsSize;i+=2){
+        if(i+1 < numsSize){
+            res[index++] = nums[i+1];
+        }
+        res[index++] = nums[i];
+    }
+    *returnSize = index;
+    return res;
+}
+```
+
