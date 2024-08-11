@@ -441,3 +441,78 @@ class Temp{
 ```
 
 
+**Fibonacci**
+
+```java
+class Main{  
+public static void main(String[] args){  
+Scanner scan = new Scanner(System.in);  
+int n = scan.nextInt();  
+int a = 0,b = 1;  
+System.out.print(a+",");  
+System.out.print(b+",");  
+for(int i=2;i<n;i++){  
+int num = a + b;  
+System.out.print(num);  
+if(i < n-1) System.out.print(",");  
+a = b;  
+b = num;  
+}  
+}  
+}
+```
+
+**Next 5 primes**
+
+```java
+import java.util.Scanner;  
+  
+class Main{  
+public static void main(String[] args){  
+Scanner scan = new Scanner(System.in);  
+int n = scan.nextInt();  
+n = n+1;  
+int count = 0,flag;  
+while(count < 5){  
+flag = 1;  
+for(int i=2;i<=n/2;i++){  
+if(n%i == 0){  
+flag = 0;  
+break;  
+}  
+}  
+if(flag == 1){  
+System.out.println(n);  
+//System.out.print(" ");  
+count++;  
+}  
+n++;  
+}  
+}  
+}
+```
+
+**Prime or Composite**
+
+```java
+import java.util.Scanner;  
+  
+class Main{  
+public static void main(String[] args){  
+Scanner scan = new Scanner (System.in);  
+int n = scan.nextInt();  
+int flag = 1;  
+if(n == 0 || n == 1) System.out.print("Composite");  
+else{  
+for(int i=2;i<=n/2;i++){  
+if(n%i == 0){  
+System.out.print("Composite");  
+flag = 0;  
+break;  
+}  
+}  
+}  
+if(flag == 1) System.out.print("Prime");  
+}  
+}
+```
