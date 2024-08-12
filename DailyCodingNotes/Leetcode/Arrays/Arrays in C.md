@@ -303,3 +303,22 @@ int* numberGame(int* nums, int numsSize, int* returnSize) {
 }
 ```
 
+[1051. Height Checker](https://leetcode.com/problems/height-checker/)
+
+```c
+int cmp (const void * a , const void * b){
+    return *(int *)a - *(int *)b;
+}
+
+int heightChecker(int* heights, int heightsSize) {
+    int newarr[heightsSize],index=0,count=0;
+    for(int i=0;i<heightsSize;i++){
+        newarr[index++] = heights[i];
+    }
+    qsort(newarr,index,sizeof(int),cmp);
+    for(int i=0;i<heightsSize;i++){
+        if(heights[i] != newarr[i]) count++;
+    }
+    return count;
+}
+```
