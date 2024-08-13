@@ -27,3 +27,54 @@ int smallestEvenMultiple(int n) {
     return i;
 }
 ```
+
+[3158. Find the XOR of Numbers Which Appear Twice](https://leetcode.com/problems/find-the-xor-of-numbers-which-appear-twice/)
+
+```c
+int duplicateNumbersXOR(int* nums, int numsSize) {
+    int* res = (int*)calloc(1,51 * sizeof(int));
+    int index = 0;
+    for (int i = 0; i < numsSize; i++) {
+        res[nums[i]]++;
+    }
+    for (int i = 1; i <= 50; i++) {
+        if (res[i] == 2) {
+            index = index ^ i;
+        }
+    }
+    free(res);
+    return index;
+}
+```
+
+[1913. Maximum Product Difference Between Two Pairs](https://leetcode.com/problems/maximum-product-difference-between-two-pairs/)
+
+```c
+int cmp(const void * a,const void * b){
+    return *(int *)a - *(int *)b;
+}
+
+int maxProductDifference(int* nums, int numsSize){
+    qsort(nums,numsSize,sizeof(int),cmp);
+    int res = 0;
+    int num1 = nums[numsSize-1] * nums[numsSize-2];
+    int num2 = nums[0]*nums[1];
+    res = num1 - num2;
+    return res;
+}
+```
+
+[1464. Maximum Product of Two Elements in an Array](https://leetcode.com/problems/maximum-product-of-two-elements-in-an-array/)
+
+```c
+int cmp(const void * a,const void * b){
+    return *(int *)b - * (int *)a;
+}
+
+int maxProduct(int* nums, int numsSize) {
+    qsort(nums,numsSize,sizeof(int),cmp);
+    int num1=nums[0]-1,num2=nums[1]-1;
+    int res = num1 * num2;
+    return res;
+}
+```
