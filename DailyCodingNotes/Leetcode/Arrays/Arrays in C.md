@@ -353,3 +353,37 @@ bool lemonadeChange(int* bills, int billsSize) {
     return true; // Return true if all transactions are possible
 }
 ```
+
+[624. Maximum Distance in Arrays](https://leetcode.com/problems/maximum-distance-in-arrays/)
+
+```c
+int maxDistance(int** arrays, int arraysSize, int* arraysColSize) {
+    int min = arrays[0][0];
+    int max = arrays[0][arraysColSize[0] - 1];
+    int min_idx = 0;
+    int max_idx = 0;
+    int res = 0;
+
+    for (int i = 1; i < arraysSize; i++) {
+        int current_min = arrays[i][0];
+        int current_max = arrays[i][arraysColSize[i] - 1];
+        if (i != min_idx) {
+            res = fmax(res, abs(current_max - min));
+        }
+        if (i != max_idx) {
+            res = fmax(res, abs(max - current_min));
+        }
+
+        if (current_min < min) {
+            min = current_min;
+            min_idx = i;
+        }
+        if (current_max > max) {
+            max = current_max;
+            max_idx = i;
+        }
+    }
+  
+    return res;
+}
+```

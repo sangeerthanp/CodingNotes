@@ -78,3 +78,20 @@ int maxProduct(int* nums, int numsSize) {
     return res;
 }
 ```
+
+[2520. Count the Digits That Divide a Number](https://leetcode.com/problems/count-the-digits-that-divide-a-number/)
+
+```c
+int countDigits(int num) {
+    int temp = num;
+    int divides=0;
+    while(temp != 0){
+        int rem = temp % 10;
+        if(num % rem == 0) divides++;
+        temp /= 10;
+    }
+    return divides;
+}
+```
+
+
