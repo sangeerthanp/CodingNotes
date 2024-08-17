@@ -95,3 +95,20 @@ int countDigits(int num) {
 ```
 
 
+[3232. Find if Digit Game Can Be Won](https://leetcode.com/problems/find-if-digit-game-can-be-won/)
+
+```c
+bool canAliceWin(int* nums, int numsSize){
+    int singlesum = 0,doublesum=0;
+    for(int i=0;i<numsSize;i++){
+        if(nums[i] <= 9){
+            singlesum += nums[i];
+        }
+        else{
+            doublesum += nums[i];
+        }
+    }
+    if(singlesum == doublesum) return false;
+    return true;
+}
+```
