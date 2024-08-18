@@ -225,3 +225,37 @@ char** removeAnagrams(char** words, int wordsSize, int* returnSize) {
     return newarr;
 }
 ```
+
+[1832. Check if the Sentence Is Pangram](https://leetcode.com/problems/check-if-the-sentence-is-pangram/)
+
+```c
+bool checkIfPangram(char* sentence) {
+    int hash[26] = {0};
+    
+    for(int i=0;i<strlen(sentence);i++){
+        int lower = tolower(sentence[i]);
+        hash[lower - 'a']++;
+    }
+
+    for(int i=0;i<26;i++){
+        if(hash[i] == 0) return false;
+    }
+    
+    return true;
+}
+```
+
+[1844. Replace All Digits with Characters](https://leetcode.com/problems/replace-all-digits-with-characters/)
+
+```c
+char* replaceDigits(char* s) {
+    int len = strlen(s);
+    for(int i=1;i<len;i+=2){
+        int n = s[i] - '0';
+        int temp = ((int)s[i-1]) + n;
+        char new = (char) temp;
+        s[i] = temp;
+    }
+    return s;
+}
+```
