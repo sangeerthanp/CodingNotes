@@ -112,3 +112,25 @@ bool canAliceWin(int* nums, int numsSize){
     return true;
 }
 ```
+
+[650. 2 Keys Keyboard](https://leetcode.com/problems/2-keys-keyboard/)
+
+```java
+   int minSteps(int n) {
+        int count=0,fac=1;
+        while(fac<n)
+        {
+            for(int i=2;i*fac<=n;i++)
+            {
+                if(n%(i*fac)==0)
+                {
+                    count+=i;
+                    fac=i*fac;
+                    break;
+                }
+            }
+        }      
+        return count;
+    }
+```
+
