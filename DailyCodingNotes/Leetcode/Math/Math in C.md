@@ -150,3 +150,24 @@ int sumOfTheDigitsOfHarshadNumber(int x) {
     return -1;
 }
 ```
+
+[476. Number Complement](https://leetcode.com/problems/number-complement/)
+
+```c
+int findComplement(int num) {
+    if (num == 0)
+    {
+        return 1;
+    }
+    
+    int mask = 0;
+    int temp = num;
+    while (temp > 0)
+    {
+        mask = (mask << 1) | 1;
+        temp >>= 1;
+    }
+    int complement = num ^ mask;
+    return complement;
+}
+```
