@@ -181,3 +181,64 @@ class Solution {
 }
 ```
 
+[162. Find Peak Element](https://leetcode.com/problems/find-peak-element/)
+
+
+| TC       | SC   |
+| -------- | ---- |
+| O(log n) | O(1) |
+```java
+class Solution {
+    public int findPeakElement(int[] nums) {
+        int left = 0;
+        int right = nums.length-1;
+        
+        while(left < right){
+            int mid = (left + right) / 2;
+            if(nums[mid] > nums[mid+1]) right = mid; // Here if this condition satisfies the answer would definitely be before the mid
+            else left = mid + 1; // here the answer would be after the mid element
+        }
+        return left;
+    }
+}
+```
+
+[33. Search in Rotated Sorted Array](https://leetcode.com/problems/search-in-rotated-sorted-array/)
+
+| TC       | SC   |
+| -------- | ---- |
+| O(log n) | O(1) |
+
+```java
+class Solution {
+
+    private int binarySearch(int [] nums,int target,int left,int right){
+        while(left <= right){
+            int mid = (left + right) / 2;
+            if(nums[mid] == target) return mid;
+            else if(nums[mid] < target) left = mid+1;
+            else right = mid-1;
+        }
+        return -1;
+    }
+
+  
+    public int search(int[] nums, int target) {
+        int minIdx = -1;
+        int left = 0;
+        int right = nums.length-1;
+        if(nums[0] <= nums[nums.length-1]) minIdx=0;
+        else{
+            while(left <= right){
+            int mid = (left + right) / 2;
+            if(nums[mid] > nums[nums.length -1]) left = mid + 1;
+            else right = mid -1;
+            }
+            minIdx = left;
+        }
+        int ans = binarySearch(nums,target,0,minIdx-1);
+        if(ans != -1) return ans;
+        return binarySearch(nums,target,minIdx,nums.length-1);
+    }
+}
+```
