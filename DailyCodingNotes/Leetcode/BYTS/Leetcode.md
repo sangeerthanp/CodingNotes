@@ -242,3 +242,103 @@ class Solution {
     }
 }
 ```
+
+
+[367. Valid Perfect Square](https://leetcode.com/problems/valid-perfect-square/)
+
+
+| TC       | SC   |
+| -------- | ---- |
+| O(log n) | O(1) |
+
+```java
+class Solution {
+    public boolean isPerfectSquare(int num) {
+        // long temp = 1;
+        // while(true){
+        //     if((temp * temp) == num) return true;
+        //     if((temp * temp) > num) return false;
+        //     temp++;
+        // }
+       
+        if(num == 1) return true;
+        int left = 0, right= num/2;
+        while(left <= right){
+            int mid = (left + right)/2;
+            if((long)mid*mid == num) return true;
+            else if((long)mid*mid < num) left = mid + 1;
+            else right = mid - 1;
+        }
+        return false;
+    }
+}
+```
+
+[136. Single Number](https://leetcode.com/problems/single-number/)
+
+| TC   | SC   |
+| ---- | ---- |
+| O(n) | O(1) |
+
+```java
+class Solution {
+    public int singleNumber(int[] nums) {
+        int ans = 0;
+        for(int i=0;i<nums.length;i++){
+            ans = ans ^ nums[i];
+        }
+        return ans;
+    }
+}
+```
+
+
+[268. Missing Number](https://leetcode.com/problems/missing-number/)
+
+| TC   | SC   |
+| ---- | ---- |
+| O(n) | O(1) |
+
+```java
+class Solution {
+    public int missingNumber(int[] nums) {
+        int n = nums.length;
+        int ans = 0;
+        for (int i = 0; i < n; i++) {
+            ans = ans ^ nums[i] ^ i;
+        }
+        return ans ^ n;
+    }
+}
+```
+
+[42. Trapping Rain Water](https://leetcode.com/problems/trapping-rain-water/)
+
+| TC   | SC   |
+| ---- | ---- |
+| O(n) | O(1) |
+```java
+class Solution {
+    public int trap(int[] height) {
+
+        int n = height.length;
+        int left = 0, right = n-1;
+        int leftMax = 0, rightMax = 0;
+        int ans = 0;
+
+        while(left <= right){
+            if(height[left] < height[right]){
+                if(leftMax < height[left]) leftMax = height[left];
+                else ans = ans + leftMax-height[left];
+                left++;
+            }
+            else{
+                if(rightMax < height[right]) rightMax = height[right];
+                else ans = ans + rightMax - height[right];
+                right--;
+            }
+        }
+        return ans;
+    }
+}
+```
