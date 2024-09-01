@@ -342,3 +342,49 @@ class Solution {
     }
 }
 ```
+
+[2022. Convert 1D Array Into 2D Array](https://leetcode.com/problems/convert-1d-array-into-2d-array/)
+
+| TC     | SC     |
+| ------ | ------ |
+| O(m*n) | O(m*n) |
+
+```java
+class Solution {
+    public int[][] construct2DArray(int[] original, int m, int n) {
+        if(m*n != original.length) return new int[][]{}; //anonymous array
+        int[][] grid = new int[m][n];
+        int itr = 0;
+        for(int i=0;i<m;i++){
+            for(int j=0;j<n;j++){
+                grid[i][j] = original[itr++];
+            }
+        }
+        return grid;
+    }
+}
+```
+
+[75. Sort Colors](https://leetcode.com/problems/sort-colors/)
+
+| TC   | SC   |
+| ---- | ---- |
+| O(n) | O(1) |
+
+```java
+class Solution {
+    public void sortColors(int[] nums) {
+        int zeroCount = 0;
+        int oneCount = 0;
+
+        for(int i=0;i<nums.length;i++){
+            if(nums[i] == 0) zeroCount++;
+            if(nums[i] == 1) oneCount++;
+        }
+
+        for(int i=0;i<zeroCount;i++) nums[i] = 0;
+        for(int i=zeroCount;i<zeroCount+oneCount;i++) nums[i] = 1;
+        for(int i=zeroCount+oneCount;i<nums.length;i++) nums[i] = 2;
+    }
+}
+```
