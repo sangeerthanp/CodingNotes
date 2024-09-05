@@ -439,3 +439,21 @@ class Solution {
     }
 }
 ```
+
+[876. Middle of the Linked List](https://leetcode.com/problems/middle-of-the-linked-list/)
+
+```java
+class Solution {
+    public ListNode middleNode(ListNode head) {
+        ListNode slow = head, fast = head; // modify this as head.next for the 1st middle element
+        while(fast != null){
+            fast = fast.next;
+            if(fast != null){
+                fast = fast.next;
+                slow = slow.next;
+            }
+        }
+        return slow;
+    }
+}
+```
