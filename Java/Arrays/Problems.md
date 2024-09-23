@@ -204,3 +204,143 @@ class Solution {
 }
 ```
 
+**Left rotate an array by d times**
+
+Approach - 1:
+
+| TC     | SC   |
+| ------ | ---- |
+| O(n+d) | O(d) |
+
+```java
+class Solution {
+    void leftRotate(int arr[], int d) {
+        d %= arr.length;
+        int [] temp = new int[arr.length];
+        for(int i=0;i<d;i++){
+            temp[i] = arr[i];
+        }
+        for(int i=d;i<arr.length;i++){
+            arr[i-d] = arr[i];
+        }
+        for(int i=arr.length-d;i<arr.length;i++){
+            arr[i] = temp[i-(arr.length-d)];
+        }
+    }
+}
+```
+
+
+Approach - 2:
+
+| TC    | SC   |
+| ----- | ---- |
+| O(2n) | O(1) |
+```java
+class Solution {
+    void reverse(int [] arr,int s,int e){
+        while(s < e){
+            int temp = arr[s];
+            arr[s] = arr[e];
+            arr[e] = temp;
+            s++;
+            e--;
+        }
+    }
+    
+    void leftRotate(int arr[], int d) {
+        d %= arr.length;
+        reverse(arr,0,d-1);
+        reverse(arr,d,arr.length-1);
+        reverse(arr,0,arr.length-1);
+    }
+}
+```
+
+**Move zero to end**
+
+Approach - 1:
+
+| TC   | SC   |
+| ---- | ---- |
+| O(n) | O(n) |
+
+```java
+public class Solution {
+        public static int[] moveZeros(int n, int []a) {
+            int [] arr = new int[n];
+            int index = 0;
+            for(int i=0;i<n;i++){
+                if(a[i] != 0){
+                    arr[index] = a[i];
+                    index++;
+                }
+            }
+
+            for(int i=index+1;i<n;i++){
+                arr[i] = 0;
+            }
+            return arr;
+    }
+}
+```
+
+Approach - 2:
+
+| TC   | SC   |
+| ---- | ---- |
+| O(n) | O(1) |
+
+```java
+public class Solution {
+        public static int[] moveZeros(int n, int []a) {
+            int j = -1;
+            for(int i=0;i<n;i++){
+                if(a[i] == 0){
+                j = i;
+                break;
+                }
+            }
+
+            if (j == -1) return a;
+            
+            for(int i=j+1;i<n;i++){
+                if(a[i] != 0){
+                    int temp = a[i];
+                    a[i] = a[j];
+                    a[j] = temp;
+                    j++;
+                }
+            }
+        return a;
+    }
+}
+```
+
+**Merge two sorted array or Union**
+
+| TC  | SC  |
+| --- | --- |
+|     |     |
+
+
+```java
+import java.util.*;
+public class Solution {
+    public static List< Integer > sortedArray(int []a, int []b) {
+        Set<Integer> s = new HashSet<>();
+        for(int i=0;i<a.length;i++){
+            s.add(a[i]);
+        }
+
+        for(int i=0;i<b.length;i++){
+            s.add(b[i]);
+        }
+
+        List<Integer> res = new ArrayList<>(s);
+        Collections.sort(res);
+        return res;
+    }
+}
+```
+
