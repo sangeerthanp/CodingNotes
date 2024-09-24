@@ -323,7 +323,6 @@ public class Solution {
 | --- | --- |
 |     |     |
 
-
 ```java
 import java.util.*;
 public class Solution {
@@ -339,6 +338,83 @@ public class Solution {
 
         List<Integer> res = new ArrayList<>(s);
         Collections.sort(res);
+        return res;
+    }
+}
+```
+
+| TC       | SC       |
+| -------- | -------- |
+| O(n1+n2) | O(n1+n2) |
+
+```java
+import java.util.*;
+public class Solution {
+    public static List< Integer > sortedArray(int []a, int []b) {
+        List<Integer> s = new ArrayList<>();
+        int len1 = a.length;
+        int len2 = b.length;
+        int i = 0,j = 0;
+        
+        while(i < len1 && j < len2){
+            if(a[i] <= b[j]){
+                if(s.size() == 0 || s.get(s.size()-1) != a[i]){
+                    s.add(a[i]);
+                }
+                i++;
+            }
+            else{
+                if(s.size() == 0 || s.get(s.size()-1) != b[j]){
+                    s.add(b[j]);
+                }
+                j++;    
+            }
+        }
+
+        while(i < len1){
+            if(s.size() == 0 || s.get(s.size()-1) != a[i]){
+                    s.add(a[i]);
+                }
+                i++;
+        }
+
+        while(j < len2){
+            if(s.size() == 0 || s.get(s.size()-1) != b[j]){
+                    s.add(b[j]);
+                }
+                j++;
+        }
+        return s;
+    }
+}
+```
+
+**Intersection Of Two Sorted Arrays**
+
+| TC       | SC   |
+| -------- | ---- |
+| O(n1+n2) | O(1) |
+
+
+```java
+import java.util.* ;
+import java.io.*; 
+
+public class Solution
+{
+public static ArrayList<Integer> findArrayIntersection(ArrayList<Integer> arr1, int n, ArrayList<Integer> arr2, int m){
+
+        ArrayList<Integer> res = new ArrayList<>();
+        int i=0,j=0;
+        while(i < n && j < m){
+            if(arr1.get(i) < arr2.get(j)) i++;
+            else if(arr2.get(j) < arr1.get(i)) j++;
+            else{
+                res.add(arr1.get(i));
+                i++;
+                j++;
+            }
+        }
         return res;
     }
 }
