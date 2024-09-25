@@ -420,3 +420,166 @@ public static ArrayList<Integer> findArrayIntersection(ArrayList<Integer> ar
 }
 ```
 
+**Missing Number**
+
+Approach - 1:
+
+| TC     | SC   |
+| ------ | ---- |
+| O(n^2) | O(1) |
+
+```java
+import java.util.Arrays;
+
+public class Solution {
+    public static int missingNumber(int []a, int n) {
+        for(int i=1;i<=n;i++){
+            int flag = 0;
+            for(int j=0;j<n;j++){
+                if(i == a[j]){
+                    flag = 1;
+                    break;
+                }
+            }
+            if(flag == 0) return i;
+        }
+        return 0;
+    }
+}
+```
+
+
+Approach - 2 (Hashing):
+
+| TC     | SC   |
+| ------ | ---- |
+| O(n+n) | O(n) |
+
+```java
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+
+public class Solution {
+    public static int missingNumber(int []a, int n) {
+        Map<Integer,Integer> hash = new HashMap<>();
+        for(int i=0;i<n;i++){
+            hash.put(a[i],1);
+        }
+
+        for(int i=1;i<=n;i++){
+            if(!hash.containsKey(i)) return i;
+        }
+        
+        return 0 ;
+    }
+}
+```
+
+Approach - 3(Sum):
+
+| TC   | SC   |
+| ---- | ---- |
+| O(n) | O(1) |
+
+```java
+public class Solution {
+    public static int missingNumber(int []a, int n) {
+        int sum = 0;
+        sum = n * (n+1) / 2;
+        for(int i=0;i<n;i++)
+        sum -= a[i];
+        return sum;
+    }
+}
+```
+
+Approach - 4(XOR):
+
+| TC     | SC   |
+| ------ | ---- |
+| O(n+n) | O(1) |
+
+
+```java
+public class Solution {
+    public static int missingNumber(int []a, int n) {
+        int xor1 = 0, xor2 = 0;
+        
+        for(int i=1;i<=n;i++){
+            xor1 = xor1 ^ i;
+        }
+        for(int i=0;i<n;i++){
+            xor2 = xor2 ^ a[i];
+        }
+        return xor1^xor2;
+    }
+}
+```
+
+| TC   | SC   |
+| ---- | ---- |
+| O(n) | O(1) |
+
+```java
+public class Solution {
+    public static int missingNumber(int []a, int n) {
+        int xor1 = 0, xor2 = 0;
+        for(int i=0;i<n;i++){
+            xor2 = xor2 ^ a[i];
+            xor1 = xor1 ^ (i+1);
+        }
+        return xor1^xor2;
+    }
+}
+```
+
+**Consecutive one's in an array**
+
+| TC   | SC   |
+| ---- | ---- |
+| O(n) | O(1) |
+
+```java
+import java.util.* ;
+import java.io.*; 
+
+public class Solution {
+    public static int consecutiveOnes(int n, int[] arr) {
+        int count = 0,max = 0;
+        for(int i=0;i<n;i++){
+            if(arr[i] == 1){
+                count++;
+            }
+            else{
+                max = Math.max(count, max);
+                count = 0;
+            }
+        }
+
+        max = Math.max(count, max);
+        return max;
+    }
+}
+```
+
+**Find The Single Element**
+
+| TC     | SC   |
+| ------ | ---- |
+| O(n^2) | O(1) |
+```java
+public class Solution {
+    public static int getSingleElement(int []arr){
+    
+        for(int i=0;i<arr.length;i++){
+            int num = arr[i],count  = 0;
+            for(int j = 0;j<arr.length;j++){
+                if(arr[j] == num) count++;
+            }
+            if(count == 1) return arr[i];
+        }
+        return 0;
+    }
+}
+```
