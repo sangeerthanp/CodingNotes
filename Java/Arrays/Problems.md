@@ -583,3 +583,141 @@ public class Solution {
     }
 }
 ```
+
+
+```java
+import java.util.HashMap;
+import java.util.Map;
+
+public class Solution {
+    public static int getSingleElement(int []arr){
+        Map<Integer,Integer> hash = new HashMap<>();
+        
+        for(int i=0;i<arr.length;i++){
+            hash.put(arr[i],hash.getOrDefault(arr[i],0)+1);
+        } 
+
+        for(int key : hash.keySet()){
+            if(hash.get(key) == 1) return key;
+        }
+
+        return 0;
+    }
+}
+```
+
+
+[1. Two Sum](https://leetcode.com/problems/two-sum/)
+
+Approach 1 (Hashing):
+
+
+| TC   | SC   |
+| ---- | ---- |
+| O(n) | O(n) |
+
+```java
+class Solution {
+    public int[] twoSum(int[] nums, int target) {
+        int res[] = new int[2];
+        HashMap<Integer,Integer> hash = new HashMap<>();
+
+        for(int i=0;i<nums.length;i++){
+            int curr = target - nums[i];
+            if(hash.containsKey(curr)){
+                res[0] = hash.get(curr);
+                res[1] = i;
+                return res;
+            }
+            hash.put(nums[i],i);
+        }
+        return res;
+    }
+}
+```
+
+
+Approach - 2 (3-Pointer):
+
+
+| TC   | SC   |
+| ---- | ---- |
+| O(n) | O(1) |
+
+
+```java
+class Solution {
+
+    private void swap(int [] nums,int i,int j){
+        int temp = nums[i];
+        nums[i] = nums[j];
+        nums[j] = temp;
+    }
+
+    public void sortColors(int[] nums) {
+        int low = 0, mid = 0, high = nums.length-1;
+        while(mid <= high){
+            if(nums[mid] == 0){
+                swap(nums,low,mid);
+                low++;
+                mid++;
+            }
+
+            else if(nums[mid] == 1){
+                mid++;
+            }
+
+            else if(nums[mid] == 2){
+                swap(nums,mid,high);
+                high--;
+            }
+        }
+    }
+}
+```
+
+[169. Majority Element](https://leetcode.com/problems/majority-element/)
+
+Approach - 1
+
+| TC          | SC   |
+| ----------- | ---- |
+| O(n long n) | O(1) |
+
+```java
+class Solution {
+    public int majorityElement(int[] nums) {
+        Arrays.sort(nums);
+        return nums[nums.length/2]
+    }
+}
+```
+
+
+Approach - 2 (Hashing):
+
+| TC  | SC  |
+| --- | --- |
+|     |     |
+
+```java
+class Solution {
+    public int majorityElement(int[] nums) {
+        int majorityEle = 0, majorityCount = 0;
+        HashMap<Integer,Integer> hash = new HashMap<>();
+        
+        for(int i=0;i<nums.length;i++){
+            int count = hash.getOrDefault(nums[i],0)+1;
+            hash.put(nums[i],count);
+
+            if(count > majorityCount){
+                majorityEle = nums[i];
+                majorityCount = count;
+            }
+        }
+        return majorityEle;
+    }
+}
+```
+
+
