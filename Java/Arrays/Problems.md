@@ -696,9 +696,9 @@ class Solution {
 
 Approach - 2 (Hashing):
 
-| TC  | SC  |
-| --- | --- |
-|     |     |
+| TC   | SC   |
+| ---- | ---- |
+| O(n) | O(n) |
 
 ```java
 class Solution {
@@ -720,4 +720,218 @@ class Solution {
 }
 ```
 
+
+Approach - 3 (DNF- Dutch National Flag)
+
+| TC   | SC   |
+| ---- | ---- |
+| O(n) | O(1) |
+
+```java
+class Solution {
+    public int majorityElement(int[] nums) {
+        int ele = 0,j =0,count=0;
+
+        for(int i=0;i<nums.length;i++){
+            ele = nums[j];
+            if(ele == nums[i]) count++;
+            else count--;
+            if(count == 0){
+                j = i+1;
+            }
+        }
+        return ele;
+    }
+}
+```
+
+
+[Longest Subarray With Sum K](https://www.naukri.com/code360/problems/longest-subarray-with-sum-k_6682399?leftPanelTabValue=SUBMISSION)
+
+Approach 3 (Hashing):
+
+| TC           | SC   |
+| ------------ | ---- |
+| O(n * log n) | O(n) |
+
+```java
+import java.util.HashMap;
+
+public class Solution {
+    public static int longestSubarrayWithSumK(int []a, long k) {
+        HashMap<Long,Integer> prefixSumMap = new HashMap<>();
+        long sum = 0;
+        int maxLen = 0;
+
+        for(int i=0;i<a.length;i++){
+            sum += a[i];
+            
+            if(sum == k){
+                maxLen = Math.max(maxLen,i+1);
+            }
+
+            long rem = sum - k;
+
+            if(prefixSumMap.containsKey(rem)){
+                int len = i - prefixSumMap.get(rem);
+                maxLen = Math.max(maxLen,len);
+            }
+
+            if(!prefixSumMap.containsKey(sum)){
+                prefixSumMap.put(sum,i);
+            }
+
+        }
+        return maxLen;
+    }
+}
+```
+
+[53. Maximum Subarray](https://leetcode.com/problems/maximum-subarray/)
+
+Approach - 1
+
+| TC     | SC   |
+| ------ | ---- |
+| O(n^3) | O(1) |
+```java
+class Solution {
+    public int maxSubArray(int[] nums) {
+        int n = nums.length;
+        int maxSum = Integer.MIN_VALUE;
+        for(int i=0;i<n;i++){
+            for(int j=i;j<n;j++){
+                int sum = 0;
+                for(int k=i;k<=j;k++){
+                    sum += nums[k];
+                }
+                maxSum = Math.max(maxSum,sum);
+            }
+        }
+        return maxSum;
+    }
+}
+```
+
+Approach - 2:
+
+| TC     | SC   |
+| ------ | ---- |
+| O(n^2) | O(1) |
+
+```java
+class Solution {
+    public int maxSubArray(int[] nums) {
+        int n = nums.length;
+        int sum = 0;
+        int maxSum = Integer.MIN_VALUE;
+        for(int i=0;i<n;i++){
+            sum = 0;
+            for(int j=i;j<n;j++){
+                sum += nums[j];
+                maxSum = Math.max(maxSum,sum);
+            }
+        }
+        return maxSum;
+    }
+}
+```
+
+Approach - 3(Kadane's Algo)
+
+| TC   | SC   |
+| ---- | ---- |
+| O(n) | O(1) |
+
+```java
+class Solution {
+    public int
+    
+maxSubArray(int[] nums) {
+        int sum = 0;
+        int maxSum = Integer.MIN_VALUE;
+
+        for(int i=0;i<nums.length;i++){
+            sum += nums[i];
+            maxSum = Math.max(maxSum,sum);
+
+            if(sum < 0){
+                sum = 0;
+            }
+        }
+        return maxSum;
+    }
+}
+```
+
+[2149. Rearrange Array Elements by Sign](https://leetcode.com/problems/rearrange-array-elements-by-sign/)
+
+Approach - 1 
+
+| TC   | SC   |
+| ---- | ---- |
+| O(n) | O(n) |
+```java
+class Solution {
+
+    public int[] rearrangeArray(int[] nums) {
+
+        int len = nums.length;
+
+        int [] pos = new int[len/2];
+        int [] neg = new int[len/2];
+
+        int in=0,jn=0;
+
+        for(int i=0;i<nums.length;i++){
+            if(nums[i] < 0 ) neg[jn++] = nums[i];
+            else pos[in++] = nums[i];
+        }
+
+        int [] res = new int[len];
+        int index1 = 0;
+        int inn=0,jnn=0;
+
+        for(int i=0;i<len;i++){
+            if(i%2 == 0){
+                res[index1++] = pos[inn++];
+            }
+            else{
+                res[index1++] = neg[jnn++];
+            }
+        }
+        return res;
+    }
+}
+```
+
+Approach -2 
+
+| TC   | SC   |
+| ---- | ---- |
+| O(n) | O(n) |
+```java
+class Solution {
+
+    public int[] rearrangeArray(int[] nums) {
+
+        int len = nums.length;
+        int pC = 0, nC = 1;
+        
+        int [] res = new int[len];
+
+        for(int i=0;i<len;i++){
+            if(nums[i] > 0){
+                res[pC] = nums[i];
+                pC += 2;
+            }
+            else{
+                res[nC] = nums[i];
+                nC += 2;
+            }
+        }
+        return res;
+    }
+}
+```
 
