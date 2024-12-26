@@ -132,8 +132,6 @@ import java.util.HashSet;
 
 import java.util.*;
 
-  
-
 public class Solution {
 
     public static int removeDuplicates(int[] arr,int n) {
@@ -500,7 +498,6 @@ Approach - 4(XOR):
 | ------ | ---- |
 | O(n+n) | O(1) |
 
-
 ```java
 public class Solution {
     public static int missingNumber(int []a, int n) {
@@ -568,6 +565,7 @@ public class Solution {
 | TC     | SC   |
 | ------ | ---- |
 | O(n^2) | O(1) |
+
 ```java
 public class Solution {
     public static int getSingleElement(int []arr){
@@ -610,7 +608,6 @@ public class Solution {
 [1. Two Sum](https://leetcode.com/problems/two-sum/)
 
 Approach 1 (Hashing):
-
 
 | TC   | SC   |
 | ---- | ---- |
