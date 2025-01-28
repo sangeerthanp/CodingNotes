@@ -24,12 +24,13 @@ char nextVow(char ch){
 
 char nextCons(char ch){
   do{
-    if(ch == 'z') return 'a';
-    else if(ch == 'Z') return 'Z';
+    if(ch == 'z') return 'b';
+    else if(ch == 'Z') return 'B';
     else ch++;
   } while(strchr("aeiouAEIOU",ch));
   return ch;
 }
+
 int main(){
   char str[100];
   fgets(str,100,stdin);
