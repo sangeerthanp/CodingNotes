@@ -77,3 +77,49 @@ class Solution {
 }
 ```
 
+# [103. Binary Tree Zigzag Level Order Traversal](https://leetcode.com/problems/binary-tree-zigzag-level-order-traversal/)
+
+```java
+class Solution {
+
+    public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
+        List<List<Integer>> list = new ArrayList<>();
+        
+        if(root == null) return list;
+
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.add(root);
+
+        int level = 0;
+        
+        while(!queue.isEmpty()){
+            int size = queue.size();
+
+            List<Integer> l = new ArrayList<>();
+
+            for(int i=0;i<size;i++){
+                TreeNode node = queue.poll();
+                
+                if(node != null){
+                    if(level % 2 == 0){
+                        l.add(node.val);
+                    }else{
+                        l.add(0,node.val); /* for the odd level every element is added at the 0th index where the list will be reversed.. 
+			        1) [5] - 5 is inserted 0th index
+			        2) [2,5] - 2 is inserted at 0th index
+			        3) [1,2,5] - 1 is inserted at 0th index
+			        4) etccc
+                        */
+                    }
+
+                    if(node.left != null) queue.add(node.left);
+                    if(node.right != null) queue.add(node.right);
+                }
+            }
+            level++;
+            list.add(l);
+        }
+        return list;
+    }
+}
+```
