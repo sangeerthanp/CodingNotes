@@ -932,3 +932,129 @@ class Solution {
 }
 ```
 
+[54. Spiral Matrix](https://leetcode.com/problems/spiral-matrix/)
+
+```java
+class Solution {
+
+    public List<Integer> spiralOrder(int[][] matrix) {
+
+        List<Integer> list = new ArrayList<>();
+
+        int m = matrix.length;
+        int n = matrix[0].length;
+
+        int top = 0, bottom = m-1, left = 0, right  = n -1;
+
+        while(top <= bottom && left <=right){
+
+        for(int i=left;i<=right;i++){
+            list.add(matrix[top][i]); // right
+        }
+        top++;
+
+
+        for(int i=top;i<=bottom;i++){
+            list.add(matrix[i][right]); // bottom
+        }
+        right--;
+
+
+        if(top <= bottom){
+            for(int i=right;i>=left;i--){
+                list.add(matrix[bottom][i]); // left
+            }
+        bottom--;
+        }
+
+  
+
+        if(left <= right){
+            for(int i=bottom;i>=top;i--){
+                list.add(matrix[i][left]); // top
+            }
+        left++;
+        }
+
+        }
+
+        return list;
+
+    }
+
+}
+```
+
+[48. Rotate Image (90 degree rotation)](https://leetcode.com/problems/rotate-image/)
+
+```java
+class Solution {
+    public void rotate(int[][] matrix) {
+        int n = matrix.length;
+
+        for(int i=0;i<n-1;i++){
+            for(int j=i+1;j<n;j++){
+                int temp = matrix[i][j];
+                matrix[i][j] = matrix[j][i];
+                matrix[j][i] = temp;
+            }
+        }
+
+        int left = 0;
+        int right = n-1;
+
+        while(left < right){
+            for(int row=0;row<n;row++){
+            int temp = matrix[row][left];
+            matrix[row][left] = matrix[row][right];
+            matrix[row][right] = temp;
+        }
+        left++;
+        right--;
+        }
+
+    }
+}
+```
+
+[73. Set Matrix Zeroes](https://leetcode.com/problems/set-matrix-zeroes/)
+
+```java
+class Solution {
+
+    public void setMatrix(int m,int n,int[][]matrix,int row,int col){
+        for(int k=0;k<m;k++){
+            if(matrix[k][col] == 0) continue;
+            matrix[k][col] = -11;
+        }
+        for(int k=0;k<n;k++){
+            if(matrix[row][k] == 0) continue;
+            matrix[row][k] = -11;
+        }
+
+    }
+
+    public void setZeroes(int[][] matrix) {
+        int m = matrix.length;
+        int n = matrix[0].length;
+
+        for(int i=0;i<m;i++){
+            for(int j=0;j<n;j++){
+                if(matrix[i][j] == 0){
+                    setMatrix(m,n,matrix,i,j);
+                }
+            }
+        }
+
+        for(int i=0;i<m;i++){
+            for(int j=0;j<n;j++){
+                if(matrix[i][j] == -11){
+                    matrix[i][j] = 0;
+                }
+            }
+        }
+
+    }
+}
+```
+
