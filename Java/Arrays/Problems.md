@@ -1058,3 +1058,108 @@ class Solution {
 }
 ```
 
+
+[31. Next Permutation](https://leetcode.com/problems/next-permutation/)
+
+//find the first adjacent pair from right side where left is smaller than right. 
+//if you don't find such a pair, reverse the whole array. 
+//swap the left element in the pair with the smallest element greater than that to its right. 
+//then reverse the sub array from the point of swap(after the left element in the pair) till the end.
+
+```java
+class Solution {
+
+    private void reverse(int[] nums,int s,int e){
+        while(s < e){
+            int temp = nums[s];
+            nums[s] = nums[e];
+            nums[e] = temp;
+            s++;
+            e--; 
+        }
+    }
+
+    public void nextPermutation(int[] nums) {
+        int idx = -1;
+        int n = nums.length;
+        for(int i=n-2;i>=0;i--){
+            if(nums[i] < nums[i+1]){
+                idx = i;
+                break;
+            }
+        }
+
+        if(idx == -1){
+            reverse(nums,0,n-1);
+            return;
+        }
+
+        for(int i=n-1;i>=idx;i--){
+            if(nums[i] > nums[idx]){
+                int temp = nums[i];
+                nums[i] = nums[idx];
+                nums[idx] = temp;
+                break;
+            }
+        }
+        reverse(nums,idx+1,n-1);
+    }
+}
+```
+
+
+[Array Leaders](https://www.geeksforgeeks.org/problems/leaders-in-an-array-1587115620/1)
+
+Bruteforce:  TLE
+
+| Time   | Space |
+| ------ | ----- |
+| O(n^2) | O(n)  |
+
+```java
+
+class Solution {
+    static ArrayList<Integer> leaders(int arr[]) {
+        int n = arr.length;
+        ArrayList<Integer> list = new ArrayList<>();
+        
+        for(int i=0;i<n-1;i++){
+            int flag = 1;
+            for(int j=i+1;j<n;j++){
+                if(arr[i] < arr[j]){
+                    flag = 0;
+                    break;
+                }
+            }
+            if(flag == 1) list.add(arr[i]);
+        }
+        list.add(arr[n-1]);
+        return list;
+    }
+}
+```
+
+Optimal:
+
+| Time | Space |
+| ---- | ----- |
+| O(n) | O(n)  |
+
+```java
+class Solution {
+    static ArrayList<Integer> leaders(int arr[]) {
+        int n = arr.length;
+        ArrayList<Integer> list = new ArrayList<>();
+        int max = 0;
+        for(int i=n-1;i>=0;i--){
+            if(arr[i] >= max){
+                max = arr[i];
+                list.add(arr[i]);
+            }
+        }
+        list = Collections.reverse(list);
+        return list;
+    }
+}
+```
+
