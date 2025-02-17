@@ -1163,3 +1163,188 @@ class Solution {
 }
 ```
 
+[496. Next Greater Element I](https://leetcode.com/problems/next-greater-element-i/)
+
+```java
+class Solution {
+    public int[] nextGreaterElement(int[] nums1, int[] nums2) {
+        int len1 = nums1.length;
+        int len2 = nums2.length;
+        int [] res = new int[len1];
+        int index = 0;
+        for(int i=0;i<len1;i++){
+            for(int j=0;j<len2;j++){
+                if(nums1[i] == nums2[j]){
+                    int flag = 1;
+                    int num = nums2[j];
+                    for(int k=j+1;k<=len2-1;k++){
+                        if(nums2[k] > num){
+                            flag = 0;
+                            res[index++] = nums2[k];
+                            break;
+                        }
+                    }
+                    if(flag == 1) res[index++] = -1;
+                }
+            }
+        }
+        return res;
+    }
+}
+```
+
+```java
+class Solution {
+    public int[] nextGreaterElement(int[] nums1, int[] nums2) {
+        int len1 = nums1.length;
+        int len2 = nums2.length;
+        int [] res = new int[len1];
+        for(int i=0;i<len1;i++){
+            int j = len2 - 1, greaterNum = -1;
+            while(j != 0 && nums2[j] != nums1[i]){
+                if(nums2[j] > nums1[i]){
+                    greaterNum = nums2[j];
+                }
+                j--;
+            }
+            res[i] = greaterNum;
+        }
+        return res;
+    }
+}
+```
+
+```java
+class Solution {
+    public int[] nextGreaterElement(int[] nums1, int[] nums2) {
+        int len1 = nums1.length;
+
+        int [] res = new int[len1];
+        int index = 0;
+        
+        Stack<Integer> stack = new Stack<>();
+        HashMap<Integer,Integer> map = new HashMap<>();
+
+        for(int num : nums2){
+            while(!stack.isEmpty() && num > stack.peek()){
+                map.put(stack.pop(),num);
+            }
+            stack.add(num);
+        }
+
+        for(int num : nums1){
+            res[index++] = map.getOrDefault(num,-1);
+        }
+        return res;
+    }
+}
+```
+
+[1920. Build Array from Permutation](https://leetcode.com/problems/build-array-from-permutation/)
+
+```java
+class Solution {
+    public int[] buildArray(int[] nums) {
+        int [] res = new int[nums.length];
+        for(int i=0;i<nums.length;i++){
+            int num = nums[i];
+            res[i] = nums[num];
+        }
+        return res;
+    }
+}
+```
+
+#Recursion
+
+```java
+class Solution {
+
+    public void getRes(int [] nums,int i){
+        if(i < nums.length){
+            int num = nums[i];
+            int res = nums[num];
+            getRes(nums,i+1);
+            nums[i] = res;
+        }
+    }
+
+    public int[] buildArray(int[] nums) {
+        getRes(nums,0);
+        return nums;
+    }
+}
+```
+
+[1929. Concatenation of Array](https://leetcode.com/problems/concatenation-of-array/)
+
+```java
+class Solution {
+    public int[] getConcatenation(int[] nums) {
+        int len = nums.length;
+        int [] res = new int[len+len];
+        int index = 0;
+        for(int i=0;i<2*len;i++){
+            int num = nums[i%len];
+            res[index++] = num;
+        }
+        return res;
+    }
+}
+```
+
+[1480. Running Sum of 1d Array](https://leetcode.com/problems/running-sum-of-1d-array/)
+
+```java
+class Solution {
+    public int[] runningSum(int[] nums) {
+        int sum = 0;
+        for(int i=0;i<nums.length;i++){
+            sum += nums[i];
+            nums[i] = sum;
+        }
+        return nums;
+    }
+}
+```
+
+[1672. Richest Customer Wealth](https://leetcode.com/problems/richest-customer-wealth/)
+
+```java
+class Solution {
+    public int maximumWealth(int[][] accounts) {
+        int res = Integer.MIN_VALUE;
+        for(int i=0;i<accounts.length;i++){
+            int sum = 0;
+            for(int j=0;j<accounts[0].length;j++){
+                sum += accounts[i][j];
+            }
+            res = Math.max(res,sum);
+        }
+        return res;
+    }
+}
+```
+
+[1470. Shuffle the Array](https://leetcode.com/problems/shuffle-the-array/)
+
+```java
+class Solution {
+    public int[] shuffle(int[] nums, int n) {
+        int x=0,y=1;
+        int [] res = new int[2*n];
+
+        for(int i=0;i<n;i++){
+            res[x] = nums[i];
+            x += 2;
+        }
+
+        for(int i=n;i<2*n;i++){
+            res[y] = nums[i];
+            y += 2;
+        }
+        return res;
+    }
+}
+```
+
