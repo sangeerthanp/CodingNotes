@@ -101,4 +101,4 @@ public class Flights{
 
 **O/P**
 
-![[../../Pasted image 20240825225726.png]]
+![[../../../Pasted image 20240825225726.png]]

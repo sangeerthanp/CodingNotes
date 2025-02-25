@@ -10,7 +10,7 @@ A `.class` file does not contain code that is native to your processor; it ins
 The `java` launcher tool then runs your application with 
 an instance of the Java Virtual Machine.
 
-![[../../../Pasted image 20240808104603.png]]
+![[../../../../Pasted image 20240808104603.png]]
 
 ```java
 class HelloWorldApp {
