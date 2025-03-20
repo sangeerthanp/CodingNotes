@@ -260,3 +260,75 @@ class Solution {
 }
 ```
 
+[3461. Check If Digits Are Equal in String After Operations I](https://leetcode.com/problems/check-if-digits-are-equal-in-string-after-operations-i/)
+
+```java
+class Solution {
+    public boolean hasSameDigits(String s) {
+        while(s.length() > 2){
+            StringBuilder str = new StringBuilder();
+            int len = s.length();
+            for(int i=0;i<len-1;i++){
+                int num1 = s.charAt(i) - '0';
+                int num2 = s.charAt(i+1) - '0';
+                int sum = (num1 + num2) % 10;
+                str.append(sum);
+            }
+            s = str.toString(); 
+        }
+        return s.charAt(0) == s.charAt(1);
+    }
+}
+```
+
+[49. Group Anagrams](https://leetcode.com/problems/group-anagrams/)
+
+```java
+class Solution {
+    public List<List<String>> groupAnagrams(String[] strs) {
+        Map<String,List<String>> keyToAna = new HashMap<>();
+
+        for(int i=0;i<strs.length;i++){
+            char [] chars = strs[i].toCharArray();
+            Arrays.sort(chars);
+            String key = new String(chars);
+
+            if(!(keyToAna.containsKey(key))){
+                keyToAna.put(key,new ArrayList<>());
+            }
+
+            keyToAna.get(key).add(strs[i]);
+        }
+        return new ArrayList<>(keyToAna.values());
+    }
+}
+```
+
+[451. Sort Characters By Frequency](https://leetcode.com/problems/sort-characters-by-frequency/)
+
+```java
+class Solution {
+    public String frequencySort(String s) {
+        
+        HashMap<Character,Integer> map = new HashMap<>();
+        for(char c : s.toCharArray()){
+            map.put(c,map.getOrDefault(c,0)+1);
+        }
+
+        List<Character> sortedChars = new ArrayList<>(map.keySet());
+        Collections.sort(sortedChars,new Comparator<Character>(){
+            public int compare(Character a,Character b){
+                return map.get(b) - map.get(a);
+            }
+        });
+
+        StringBuilder res = new StringBuilder();
+        for(char c : sortedChars){
+            res.append(String.valueOf(c).repeat(map.get(c)));
+        }
+        return res.toString();
+    }
+}
+```
+
+

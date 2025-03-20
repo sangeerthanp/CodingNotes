@@ -1348,3 +1348,321 @@ class Solution {
 }
 ```
 
+[229. Majority Element II](https://leetcode.com/problems/majority-element-ii/)
+
+```java
+class Solution {
+    public List<Integer> majorityElement(int[] nums) {
+        List<Integer> list = new ArrayList<>();
+        int len = nums.length;
+        HashMap<Integer,Integer> hash = new HashMap<>();
+
+        for(int num : nums){
+            hash.put(num,hash.getOrDefault(num,0) + 1);
+        }
+
+        for(int num : hash.keySet()){
+            int val = hash.get(num);
+            if(val > len/3){
+                list.add(num);
+            }
+        }
+        return list;
+    }
+}
+```
+
+```java
+class Solution {
+    public List<Integer> majorityElement(int[] nums) {
+        int  count1 = 0 , count2 = 0;
+        int ele1 = -1000, ele2 = -1000;
+        List<Integer> list = new ArrayList<>();
+
+        for(int i=0;i<nums.length;i++){
+            if(count1 == 0 && ele2 != nums[i]){
+                count1++;
+                ele1 = nums[i];
+            }
+            else if(count2 == 0 && ele1 != nums[i]){
+                count2++;
+                ele2 = nums[i];
+            }
+            else if(ele1 == nums[i]) count1++;
+            else if(ele2 == nums[i]) count2++;
+            else{
+                count1--;
+                count2--;
+            }
+        }
+
+        count1 = 0;
+        count2 = 0;
+
+        for(int i=0;i<nums.length;i++){
+            if(nums[i] == ele1) count1++;
+            if(nums[i] == ele2) count2++;
+        }
+
+        if(count1 > nums.length/3) list.add(ele1);
+        if(count2 > nums.length/3) list.add(ele2);
+        return list;
+    }
+}
+```
+
+[56. Merge Intervals](https://leetcode.com/problems/merge-intervals/)
+
+
+| TC               | SC   |
+| ---------------- | ---- |
+| O(NlogN) + O(2N) | O(N) |
+
+```java
+class Solution {
+    public int[][] merge(int[][] intervals) {
+        List<List<Integer>> res = new ArrayList<>();
+        
+        Arrays.sort(intervals,new Comparator<int[]>(){
+            public int compare(int[] a,int[] b){
+                return a[0] - b[0];
+            }
+        });
+
+        for(int i=0;i<intervals.length;i++){
+            int start = intervals[i][0];
+            int end = intervals[i][1];
+
+            if(!res.isEmpty() && end <= res.get(res.size()-1).get(1)){
+                continue;
+            }
+
+            for(int j=i+1;j<intervals.length;j++){
+                if(intervals[j][0] <= end){
+                    end = Math.max(end,intervals[j][1]);
+                }else{
+                    break;
+                }
+            }
+
+            res.add(Arrays.asList(start,end));
+        }
+        int [][] merger = new int[res.size()][2];
+        for(int i=0;i<res.size();i++){
+            merger[i][0] = res.get(i).get(0);
+            merger[i][1] = res.get(i).get(1);
+        }
+        return merger;
+    }
+}
+```
+
+
+
+| TC              | SC   |
+| --------------- | ---- |
+| O(nlogn) + O(n) | O(n) |
+
+```java
+class Solution {
+    public int[][] merge(int[][] intervals) {
+        List<List<Integer>> res = new ArrayList<>();
+        
+        Arrays.sort(intervals,new Comparator<int[]>(){
+            public int compare(int[] a,int[] b){
+                return a[0] - b[0];
+            }
+        });
+
+        for(int i=0;i<intervals.length;i++){
+            if(res.isEmpty() || intervals[i][0] > res.get(res.size()-1).get(1)){
+                res.add(Arrays.asList(intervals[i][0] , intervals[i][1]));
+            }else{
+                res.get(res.size()-1).set(1,Math.max(res.get(res.size()-1).get(1) , intervals[i][1]));
+
+            }
+
+
+        }
+        int [][] merger = new int[res.size()][2];
+        for(int i=0;i<res.size();i++){
+            merger[i][0] = res.get(i).get(0);
+            merger[i][1] = res.get(i).get(1);
+        }
+        return merger;
+    }
+}
+```
+
+[88. Merge Sorted Array](https://leetcode.com/problems/merge-sorted-array/)
+
+| TC              | SC   |
+| --------------- | ---- |
+| O(M+N log(M+N)) | O(1) |
+
+```java
+class Solution {
+    public void merge(int[] nums1, int m, int[] nums2, int n) {
+        for(int i=m;i<m+n;i++){
+            nums1[i] = nums2[i%n];
+        }
+        Arrays.sort(nums1);
+    }
+}
+```
+
+| TC     | SC   |
+| ------ | ---- |
+| O(m+n) | O(1) |
+
+```java
+class Solution {
+    public void merge(int[] nums1, int m, int[] nums2, int n) {
+        int i = m-1;
+        int j = n-1;
+        int k = m+n-1;
+
+        while(j >= 0){
+            if(i >= 0 && nums1[i] > nums2[j]){
+                nums1[k--] = nums1[i--];
+            }else{
+                nums1[k--] = nums2[j--];
+            }
+        }
+    }
+}
+```
+
+
+[238. Product of Array Except Self](https://leetcode.com/problems/product-of-array-except-self/)
+
+**TLE**
+
+```java
+class Solution {
+    public int[] productExceptSelf(int[] nums) {
+        int len = nums.length;
+        int [] res = new int[len];
+        int index = 0;
+        for(int i=0;i<len;i++){
+            int pdt = 1;
+            for(int j=0;j<len;j++){
+                if(i != j){
+                    pdt *= nums[j];
+                }
+            }
+            res[index++] = pdt;
+        }
+        return res;
+    }
+}
+```
+
+**Prefix and Postfix Array**
+
+```java
+class Solution {
+    public int[] productExceptSelf(int[] nums) {
+        int len = nums.length;
+        int [] res = new int[len];
+        int [] prefix = new int[len];
+        int [] postfix = new int[len];
+
+        int pdt = 1;
+
+        for(int i=0;i<len;i++){
+            pdt *= nums[i];
+            prefix[i] = pdt; 
+        }
+        pdt = 1;
+
+        for(int i=len-1;i>=0;i--){
+            pdt *= nums[i];
+            postfix[i] = pdt;
+        }
+
+        for(int i=0;i<len;i++){
+            if(i == 0) res[i] = postfix[i+1];
+            else if(i == len-1) res[i] = prefix[i-1];
+            else{
+                res[i] = prefix[i-1] * postfix[i+1];
+            }
+        }
+
+        return res;
+    }
+}
+```
+
+**Without Prefix and Postfix Array**
+
+```java
+class Solution {
+    public int[] productExceptSelf(int[] nums) {
+        int len = nums.length;
+        int [] res = new int[len];
+        Arrays.fill(res,1);
+
+        int pdt = 1;
+
+        for(int i=0;i<len;i++){
+            res[i] *= pdt; 
+            pdt *= nums[i];
+        }
+        pdt = 1;
+
+        for(int i=len-1;i>=0;i--){
+            res[i] *= pdt;
+            pdt *= nums[i];
+        }
+
+        return res;
+    }
+}
+```
+
+[11. Container With Most Water](https://leetcode.com/problems/container-with-most-water/)
+
+**For loops**
+
+```java
+class Solution {
+    public int maxArea(int[] height) {
+        int len = height.length;
+        int maxWater = 0;
+        for(int i=0;i<len;i++){
+            int water = 0;
+            for(int j=i+1;j<len;j++){
+                water = Math.min(height[i],height[j]) * (j-i);
+                System.out.print(water +" ");
+                maxWater = Math.max(maxWater,water);
+            }
+        }
+        return maxWater;
+    }
+}
+```
+
+**Two Pointer Approach**
+
+```java
+class Solution {
+    public int maxArea(int[] height) {
+        int i = 0;
+        int j = height.length-1;
+        int maxWater = 0;
+        int water = 0;
+        while(i < j){
+            water = Math.min(height[i],height[j]) * (j-i);
+            maxWater = Math.max(maxWater,water);
+
+            if(height[i] < height[j]){
+                i++;
+            }else{
+                j--;
+            }
+        }
+        return maxWater;
+    }
+}
+```
