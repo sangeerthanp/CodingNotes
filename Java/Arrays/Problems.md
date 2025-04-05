@@ -1666,3 +1666,302 @@ class Solution {
     }
 }
 ```
+
+[42. Trapping Rain Water](https://leetcode.com/problems/trapping-rain-water/)
+
+```java
+class Solution {
+    public int trap(int[] height) {
+        int left = 0;
+        int right = height.length-1;
+        int leftMax = height[left];
+        int rightMax = height[right];
+        int water = 0;
+        
+        while(left < right){
+            if(leftMax < rightMax){
+                left++;
+                leftMax = Math.max(leftMax,height[left]);
+                water += leftMax - height[left];
+            }else{
+                right--;
+                rightMax = Math.max(rightMax,height[right]);
+                water += rightMax - height[right];
+            }
+        }
+        return water;
+    }
+}
+```
+
+[881. Boats to Save People](https://leetcode.com/problems/boats-to-save-people/)
+
+```java
+class Solution {
+    public int numRescueBoats(int[] nums, int limit) {
+        Arrays.sort(nums);
+        int len = nums.length;
+        int count = 0;
+        int i = 0,j = len-1;
+        while(i <= j){
+            if(nums[i] + nums[j] <= limit){
+                i++;
+            }
+            j--;
+            count++;
+        }
+        return count;
+    }
+}
+```
+
+[167. Two Sum II - Input Array Is Sorted](https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/)
+
+```java
+class Solution {
+    public int[] twoSum(int[] numbers, int target) {
+        int n = numbers.length;
+        for(int i=0;i<n;i++){
+            for(int j=i+1;j<n;j++){
+                if(numbers[i] + numbers[j] == target){
+                    return new int[]{i+1,j+1};
+                }
+            }
+        }
+        return new int[]{0};
+    }
+}
+```
+
+
+```java
+class Solution {
+    public int[] twoSum(int[] nums, int target) {
+        int n = nums.length;
+        int i=0;
+        int j=n-1;
+        while(i<=j){
+            if(nums[i] + nums[j] == target){
+                return new int[]{i+1,j+1};
+            }
+            
+            if(nums[i] + nums[j] > target){
+                j--;
+            }else{
+                i++;
+            }
+        }
+        return new int[]{0};
+    }
+}
+```
+
+[15. 3Sum](https://leetcode.com/problems/3sum/)
+
+```java
+class Solution {
+    public List<List<Integer>> threeSum(int[] nums) {
+        Arrays.sort(nums);
+        int n = nums.length;
+        List<List<Integer>> list = new ArrayList<>();
+        for(int i=0;i<n;i++){
+            if(i!=0 && nums[i] == nums[i-1]) continue;
+
+            int j=i+1;
+            int k=n-1;
+
+            while(j<k){
+                int sum = nums[i] + nums[j] + nums[k];
+
+                if(sum < 0){
+                    j++;
+                }
+                else if(sum > 0){
+                    k--;
+                }
+                else{
+                    List<Integer> l = Arrays.asList(nums[i],nums[j],nums[k]);
+                    list.add(l);
+                    j++;
+                    k--;
+
+                    while(j<k && nums[j] == nums[j-1]) j++;
+                    while(j<k && nums[k] == nums[k+1]) k--;
+                }
+            }
+        }
+        return list;
+    }
+}
+```
+
+
+[79. Word Search](https://leetcode.com/problems/word-search/)
+
+```java
+class Solution {
+
+    private int dfs(char [][] board, String word, int [][]visited,int i,int j, int idx){
+        if(idx == word.length()) return 1;
+
+        if(i < 0 || i >= board.length || j < 0 || j >= board[0].length || visited[i][j] == 1 || board[i][j] != word.charAt(idx)){
+            return 0;
+        }
+
+        visited[i][j] = 1;
+        if(
+            dfs(board,word,visited,i+1,j,idx+1) == 1 ||
+            dfs(board,word,visited,i-1,j,idx+1) == 1||
+            dfs(board,word,visited,i,j+1,idx+1) == 1||
+            dfs(board,word,visited,i,j-1,idx+1) == 1){
+            return 1;
+        }
+
+
+        visited[i][j] = 0;
+        return 0;
+    }
+
+    public boolean exist(char[][] board, String word) {
+        int m = board.length;
+        int n = board[0].length;
+
+        int [][] visited = new int [m][n];
+
+        for(int i=0;i<m;i++){
+            for(int j=0;j<n;j++){
+                if(board[i][j] == word.charAt(0)){
+                    if(dfs(board,word,visited,i,j,0) == 1) return true; 
+                }
+            }
+        }
+        return false;
+    }
+}
+```
+
+```java
+class Solution {
+
+    private boolean backtrack(char[][] board , String word,boolean [][] visited ,int i,int j,int index){
+        if(index == word.length()){
+            return true;
+        }
+
+        if(i<0 || i >= board.length || j<0 || j >= board[0].length || visited[i][j] || board[i][j] != word.charAt(index)){
+            return false;
+        }
+
+        visited[i][j] = true;
+
+        if( backtrack(board,word,visited,i+1,j,index+1) || 
+            backtrack(board,word,visited,i-1,j,index+1) ||
+            backtrack(board,word,visited,i,j+1,index+1) || 
+            backtrack(board,word,visited,i,j-1,index+1) ){
+            return true;
+        }
+
+        visited[i][j] = false;
+        return false;
+    }
+
+    public boolean exist(char[][] board, String word) {
+        int m = board.length;
+        int n = board[0].length;
+
+        boolean [][] visited = new boolean[m][n];
+        boolean result = false;
+
+        for(int i=0;i<m;i++){
+            for(int j=0;j<n;j++){
+                if(board[i][j] == word.charAt(0)){
+                    result = backtrack(board,word,visited,i,j,0);
+                    if(result) return true;
+                }
+            }
+        }
+        return false;
+    }
+}
+```
+
+[200. Number of Islands](https://leetcode.com/problems/number-of-islands/)
+
+```java
+class Solution {
+
+    private void bfs(char [][] grid,int i,int j){
+        if(i >= grid.length || i<0 || j<0 || j >= grid[0].length || grid[i][j] == '0'){
+            return;
+        } 
+
+        grid[i][j] = '0';
+        bfs(grid,i+1,j);
+        bfs(grid,i-1,j);
+        bfs(grid,i,j+1);
+        bfs(grid,i,j-1);
+
+        return;
+    }
+
+    public int numIslands(char[][] grid) {
+        int row = grid.length;
+        int col = grid[0].length;
+        int count = 0;
+        for(int i=0;i<row;i++){
+            for(int j=0;j<col;j++){
+                if(grid[i][j] == '1'){
+                    bfs(grid,i,j);
+                    count++;
+                }
+            }
+        }
+        return count;
+    }
+}
+```
+
+
+
+[994. Rotting Oranges](https://leetcode.com/problems/rotting-oranges/)
+
+```java
+class Solution {
+
+    private void rotAdj(int [][]grid,int i,int j, int minutes){
+        if(i<0 || i>= grid.length || j<0 || j>=grid[0].length || grid[i][j]==0 || (1<grid[i][j] && grid[i][j] < minutes)){
+            return;
+        }else{
+            grid[i][j] = minutes;
+            rotAdj(grid,i+1,j,minutes+1);
+            rotAdj(grid,i-1,j,minutes+1);
+            rotAdj(grid,i,j+1,minutes+1);
+            rotAdj(grid,i,j-1,minutes+1);
+        }
+    }
+
+    public int orangesRotting(int[][] grid) {
+        if(grid == null || grid.length == 0) return -1;
+        int m = grid.length;
+        int n = grid[0].length;
+
+        for(int i=0;i<m;i++){
+            for(int j=0;j<n;j++){
+                if(grid[i][j] == 2){
+                    rotAdj(grid,i,j,2);
+                }
+            }
+        }
+
+        int minutes = 2;
+        for(int [] row : grid){
+            for(int cell : row){
+                if(cell == 1) return -1;
+                minutes = Math.max(minutes,cell);
+            }
+        }
+        return minutes-2;
+    }
+}
+```
+
